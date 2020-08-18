@@ -1,25 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-    private Rigidbody2D rigidbody;
-    private float jumpForce = 10f;
+    private Rigidbody2D rb;
+    private float jumpForce = 8f;
     private bool mouseClicked = false;
 
     void Start()
     {
-        rigidbody = GetComponent<Rigidbody2D>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            mouseClicked = true;
-            Debug.Log("click");
-        }
+        if (Input.GetMouseButtonDown(0)) mouseClicked = true;
     }
 
     void FixedUpdate()
@@ -27,7 +21,7 @@ public class PlayerScript : MonoBehaviour
         if (mouseClicked)
         {
             mouseClicked = false;
-            rigidbody.velocity = Vector2.up * jumpForce;
+            rb.velocity = Vector2.up * jumpForce;
         }
     }
 }

@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - cyan
+  - yellow
+  - magenta
+  - red
+  - collectible
   layers:
   - Default
   - TransparentFX
@@ -40,4 +45,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Second
+    uniqueID: 2145463411
+    locked: 0
+  - name: Player
+    uniqueID: 799385391
     locked: 0
