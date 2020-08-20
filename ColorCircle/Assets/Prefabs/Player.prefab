@@ -101,7 +101,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 3
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -147,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64790729bd7e9e8459097d618e54b9b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathEffect: {fileID: 372125686777794091, guid: 8812794a668586c4f99c9f91f4e1592a, type: 3}
   colors:
   - {r: 0.20784315, g: 0.8862746, b: 0.9490197, a: 1}
   - {r: 0.96470594, g: 0.8745099, b: 0.054901965, a: 1}

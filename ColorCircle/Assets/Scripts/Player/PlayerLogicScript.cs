@@ -23,6 +23,9 @@ public class PlayerLogicScript : MonoBehaviour
         else if (other.CompareTag("goal"))
         {
             UIManagerScript.Instance.IncreaseScore();
+            GameManagerScript.Instance.CreateObstacle();
+            if (Random.Range(0, 2) == 0)
+                GameManagerScript.Instance.CreateCollectible();
             other.enabled = false;
         }
         else if (!gameObject.CompareTag(other.tag)) GameOver();

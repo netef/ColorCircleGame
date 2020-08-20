@@ -13,7 +13,11 @@ public class PlayerScript : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) mouseClicked = true;
+        if (Input.GetMouseButtonDown(0))
+        {
+            mouseClicked = true;
+            rb.gravityScale = 3;
+        }
     }
 
     void FixedUpdate()
