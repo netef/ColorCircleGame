@@ -20,7 +20,12 @@ public class PlayerLogicScript : MonoBehaviour
             Destroy(other.gameObject);
             return;
         }
-        if (!gameObject.CompareTag(other.tag)) GameOver();
+        else if (other.CompareTag("goal"))
+        {
+            UIManagerScript.GetInstance().IncreaseScore();
+            other.enabled = false;
+        }
+        else if (!gameObject.CompareTag(other.tag)) GameOver();
     }
     void GameOver()
     {

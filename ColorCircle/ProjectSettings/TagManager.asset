@@ -9,6 +9,7 @@ TagManager:
   - magenta
   - red
   - collectible
+  - goal
   layers:
   - Default
   - TransparentFX
