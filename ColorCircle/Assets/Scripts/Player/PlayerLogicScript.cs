@@ -27,6 +27,7 @@ public class PlayerLogicScript : MonoBehaviour
         {
             UIManagerScript.Instance.IncreaseScore();
             GameManagerScript.Instance.CreateObstacle();
+            AudioManagerScript.Instance.PlaySuccessSound();
             if (Random.Range(0, 2) == 0)
                 GameManagerScript.Instance.CreateCollectible();
             other.enabled = false;

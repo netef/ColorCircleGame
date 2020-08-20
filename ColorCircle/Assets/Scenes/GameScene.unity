@@ -264,7 +264,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &340433737 stripped
 Transform:
@@ -573,6 +573,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickUpClip: {fileID: 8300000, guid: 2c14ffe781680c54f9a50887837b1e8f, type: 3}
   dieClip: {fileID: 8300000, guid: 924684e8018bbef469d580e65a3b72ed, type: 3}
+  successClip: {fileID: 8300000, guid: e710dbc3e2934c2459b843fef2db0975, type: 3}
 --- !u!4 &1226784471
 Transform:
   m_ObjectHideFlags: 0
@@ -585,7 +586,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &1226784472
 AudioSource:
