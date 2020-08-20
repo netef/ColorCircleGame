@@ -6,7 +6,7 @@ public class UIManagerScript : MonoBehaviour
 {
     public static UIManagerScript Instance { get; private set; }
     public GameObject scoreText;
-    private static int score = 0;
+    private int score = 0;
 
     void Awake()
     {

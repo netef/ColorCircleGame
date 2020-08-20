@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class GameManagerScript : MonoBehaviour
     public GameObject[] obstacles;
     public GameObject[] collectibles;
     public GameObject player;
+    public GameObject deathEffect;
     void Awake() => Instance = this;
 
     public void CreateObstacle()
@@ -33,5 +35,23 @@ public class GameManagerScript : MonoBehaviour
                 Instantiate(collectibles[collectibles.Length - 1], player.transform.position + Vector3.up * 7, Quaternion.identity);
                 break;
         }
+    }
+
+    public void GameOver(bool showEffect)
+    {
+        if (showEffect)
+            Instantiate(deathEffect, player.transform.position, Quaternion.identity);
+        Destroy(player.gameObject);
+        AudioManagerScript.Instance.PlayDieSound();
+        StartCoroutine(RestartLevel());
+    }
+
+    IEnumerator RestartLevel()
+    {
+        yield return new WaitForSeconds(3);
+        DestroyImmediate(UIManagerScript.Instance.gameObject);
+        DestroyImmediate(AudioManagerScript.Instance.gameObject);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        DestroyImmediate(gameObject);
     }
 }

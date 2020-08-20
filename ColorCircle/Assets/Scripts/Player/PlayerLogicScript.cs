@@ -4,7 +4,9 @@ public class PlayerLogicScript : MonoBehaviour
 {
     public GameObject deathEffect;
     public Color[] colors;
+    private int currentColorIndex = -1;
     private SpriteRenderer sr;
+    private string[] colorLabels = { "cyan", "yellow", "red", "magenta" };
 
     void Start()
     {
@@ -18,6 +20,7 @@ public class PlayerLogicScript : MonoBehaviour
         {
             RandomColor();
             Destroy(other.gameObject);
+            AudioManagerScript.Instance.PlayPickupSound();
             return;
         }
         else if (other.CompareTag("goal"))
@@ -28,35 +31,18 @@ public class PlayerLogicScript : MonoBehaviour
                 GameManagerScript.Instance.CreateCollectible();
             other.enabled = false;
         }
-        else if (!gameObject.CompareTag(other.tag)) GameOver();
-    }
-    void GameOver()
-    {
-        Instantiate(deathEffect, transform.position, Quaternion.identity);
-        Destroy(gameObject);
+        else if (!gameObject.CompareTag(other.tag)) GameManagerScript.Instance.GameOver(true);
     }
 
     void RandomColor()
     {
-        // dont allow same color
-        switch (Random.Range(0, 4))
-        {
-            case 0:
-                sr.color = colors[0];
-                gameObject.tag = "cyan";
-                break;
-            case 1:
-                sr.color = colors[1];
-                gameObject.tag = "yellow";
-                break;
-            case 2:
-                sr.color = colors[2];
-                gameObject.tag = "red";
-                break;
-            default:
-                sr.color = colors[3];
-                gameObject.tag = "magenta";
-                break;
-        }
+        int index = Random.Range(0, colors.Length);
+        if (currentColorIndex == index)
+            if (index == colors.Length - 1) index--;
+            else index++;
+        sr.color = colors[index];
+        gameObject.tag = colorLabels[index];
+        currentColorIndex = index;
     }
+    void OnBecameInvisible() => GameManagerScript.Instance.GameOver(false);
 }
