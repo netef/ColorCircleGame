@@ -22,7 +22,7 @@ public class PlayerLogicScript : MonoBehaviour
         }
         else if (other.CompareTag("goal"))
         {
-            UIManagerScript.GetInstance().IncreaseScore();
+            UIManagerScript.Instance.IncreaseScore();
             other.enabled = false;
         }
         else if (!gameObject.CompareTag(other.tag)) GameOver();

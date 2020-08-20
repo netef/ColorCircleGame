@@ -4,19 +4,16 @@ using UnityEngine;
 using TMPro;
 public class UIManagerScript : MonoBehaviour
 {
-
-    private static UIManagerScript instance = null;
+    public static UIManagerScript Instance { get; private set; }
     public GameObject scoreText;
-    private int score = 0;
-    public static UIManagerScript GetInstance()
+    private static int score = 0;
+
+    void Awake()
     {
-        if (instance == null) instance = new UIManagerScript();
-        return instance;
+        Instance = this;
+        scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + score;
     }
 
-    public void IncreaseScore()
-    {
-        Debug.Log("good");
-        scoreText.GetComponent<TextMeshPro>().text = "Score: " + score;
-    }
+    public void IncreaseScore() => scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + ++score;
+
 }

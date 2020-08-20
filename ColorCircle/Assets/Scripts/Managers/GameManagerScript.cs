@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
 {
-    private static GameManagerScript instance = null;
-    public static GameManagerScript GetInstance()
+    public static GameManagerScript Instance { get; private set; }
+    void Awake()
     {
-        if (instance == null) instance = new GameManagerScript();
-        return instance;
+        Instance = this;
     }
 }
