@@ -15,6 +15,4 @@ public class AudioManagerScript : MonoBehaviour
     public void PlayPickupSound() => audio.PlayOneShot(pickUpClip);
     public void PlayDieSound() => audio.PlayOneShot(dieClip);
     public void PlaySuccessSound() => audio.PlayOneShot(successClip);
-
-
 }

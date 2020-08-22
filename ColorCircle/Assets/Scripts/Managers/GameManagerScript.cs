@@ -39,8 +39,7 @@ public class GameManagerScript : MonoBehaviour
 
     public void GameOver(bool showEffect)
     {
-        if (showEffect)
-            Instantiate(deathEffect, player.transform.position, Quaternion.identity);
+        if (showEffect) Instantiate(deathEffect, player.transform.position, Quaternion.identity);
         Destroy(player.gameObject);
         AudioManagerScript.Instance.PlayDieSound();
         StartCoroutine(RestartLevel());

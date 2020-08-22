@@ -30,6 +30,21 @@ public class PlayerLogicScript : MonoBehaviour
             AudioManagerScript.Instance.PlaySuccessSound();
             if (Random.Range(0, 2) == 0) GameManagerScript.Instance.CreateCollectible();
             (other.GetComponent("Halo") as Behaviour).enabled = true;
+            switch (Random.Range(0, 3))
+            {
+                case 0:
+                    other.GetComponent<ColorCircleScript>().ReverseSpinningDirection();
+                    StartCoroutine(UIManagerScript.Instance.ShowFloatingText("Reversed\nDirection!"));
+                    break;
+                case 1:
+                    RandomColor();
+                    StartCoroutine(UIManagerScript.Instance.ShowFloatingText("Color\nChanged!"));
+                    break;
+                default:
+                    other.GetComponent<ColorCircleScript>().ChangeCircleSize();
+                    StartCoroutine(UIManagerScript.Instance.ShowFloatingText("Size\nIncreased!"));
+                    break;
+            }
             other.enabled = false;
         }
         else if (!gameObject.CompareTag(other.tag)) GameManagerScript.Instance.GameOver(true);

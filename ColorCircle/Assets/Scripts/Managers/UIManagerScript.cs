@@ -6,6 +6,7 @@ public class UIManagerScript : MonoBehaviour
 {
     public static UIManagerScript Instance { get; private set; }
     public GameObject scoreText;
+    public GameObject explenationText;
     private int score = 0;
 
     void Awake()
@@ -15,5 +16,13 @@ public class UIManagerScript : MonoBehaviour
     }
 
     public void IncreaseScore() => scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + ++score;
+    public IEnumerator ShowFloatingText(string text)
+    {
+        explenationText.GetComponent<TextMeshProUGUI>().text = text;
+        explenationText.SetActive(true);
+        yield return new WaitForSeconds(1);
+        explenationText.SetActive(false);
+    }
+
 
 }
