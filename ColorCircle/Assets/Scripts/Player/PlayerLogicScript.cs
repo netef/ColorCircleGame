@@ -28,8 +28,8 @@ public class PlayerLogicScript : MonoBehaviour
             UIManagerScript.Instance.IncreaseScore();
             GameManagerScript.Instance.CreateObstacle();
             AudioManagerScript.Instance.PlaySuccessSound();
-            if (Random.Range(0, 2) == 0)
-                GameManagerScript.Instance.CreateCollectible();
+            if (Random.Range(0, 2) == 0) GameManagerScript.Instance.CreateCollectible();
+            (other.GetComponent("Halo") as Behaviour).enabled = true;
             other.enabled = false;
         }
         else if (!gameObject.CompareTag(other.tag)) GameManagerScript.Instance.GameOver(true);
