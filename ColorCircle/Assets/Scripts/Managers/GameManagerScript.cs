@@ -5,11 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class GameManagerScript : MonoBehaviour
 {
+    public enum State
+    {
+        Easy, Normal, Hard
+    }
+
     public static GameManagerScript Instance { get; private set; }
     public GameObject[] obstacles;
     public GameObject[] collectibles;
     public GameObject player;
     public GameObject deathEffect;
+    [SerializeField]
+    private State state = State.Easy;
     void Awake() => Instance = this;
 
     public void CreateObstacle()
@@ -53,4 +60,53 @@ public class GameManagerScript : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         DestroyImmediate(gameObject);
     }
+    public void Goal(Collider2D other, PlayerLogicScript playerLogic)
+    {
+        UIManagerScript.Instance.IncreaseScore();
+        GameManagerScript.Instance.CreateObstacle();
+        AudioManagerScript.Instance.PlaySuccessSound();
+        if (Random.Range(0, 2) == 0) GameManagerScript.Instance.CreateCollectible();
+        (other.GetComponent("Halo") as Behaviour).enabled = true;
+        switch (state)
+        {
+            case State.Easy:
+                other.GetComponent<ColorCircleScript>().ChangeCircleSize();
+                StartCoroutine(UIManagerScript.Instance.ShowFloatingText("Size\nIncreased!"));
+                break;
+            case State.Normal:
+                switch (Random.Range(0, 2))
+                {
+                    case 0:
+                        other.GetComponent<ColorCircleScript>().ReverseSpinningDirection();
+                        StartCoroutine(UIManagerScript.Instance.ShowFloatingText("Reversed\nDirection!"));
+                        break;
+                    default:
+                        other.GetComponent<ColorCircleScript>().ChangeCircleSize();
+                        StartCoroutine(UIManagerScript.Instance.ShowFloatingText("Size\nIncreased!"));
+                        break;
+                }
+                break;
+            case State.Hard:
+                switch (Random.Range(0, 3))
+                {
+                    case 0:
+                        other.GetComponent<ColorCircleScript>().ReverseSpinningDirection();
+                        StartCoroutine(UIManagerScript.Instance.ShowFloatingText("Reversed\nDirection!"));
+                        break;
+                    case 1:
+                        playerLogic.RandomColor();
+                        StartCoroutine(UIManagerScript.Instance.ShowFloatingText("Color\nChanged!"));
+                        break;
+                    default:
+                        other.GetComponent<ColorCircleScript>().ChangeCircleSize();
+                        StartCoroutine(UIManagerScript.Instance.ShowFloatingText("Size\nIncreased!"));
+                        break;
+                }
+                break;
+            default: break;
+        }
+        other.enabled = false;
+    }
+
+    public void IncreaseDifficulty() => state++;
 }

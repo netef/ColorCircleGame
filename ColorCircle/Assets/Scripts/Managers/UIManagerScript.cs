@@ -15,7 +15,12 @@ public class UIManagerScript : MonoBehaviour
         scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + score;
     }
 
-    public void IncreaseScore() => scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + ++score;
+    public void IncreaseScore()
+    {
+        scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + ++score;
+        if (score == 2) GameManagerScript.Instance.IncreaseDifficulty();
+        if (score == 5) GameManagerScript.Instance.IncreaseDifficulty();
+    }
     public IEnumerator ShowFloatingText(string text)
     {
         explenationText.GetComponent<TextMeshProUGUI>().text = text;
