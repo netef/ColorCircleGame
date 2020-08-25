@@ -3,7 +3,7 @@
 public class PlayerScript : MonoBehaviour
 {
     private Rigidbody2D rb;
-    private float jumpForce = 8f;
+    public float jumpForce = 6f;
     private bool mouseClicked = false;
 
     void Start()
@@ -16,7 +16,7 @@ public class PlayerScript : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             mouseClicked = true;
-            rb.gravityScale = 3;
+            rb.gravityScale = 2;
         }
     }
 

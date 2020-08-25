@@ -9,17 +9,12 @@ public class UIManagerScript : MonoBehaviour
     public GameObject explenationText;
     private int score = 0;
 
-    void Awake()
-    {
-        Instance = this;
-        scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + score;
-    }
-
+    void Awake() => Instance = this;
     public void IncreaseScore()
     {
-        scoreText.GetComponent<TextMeshProUGUI>().text = "Score: " + ++score;
-        if (score == 2) GameManagerScript.Instance.IncreaseDifficulty();
+        scoreText.GetComponent<TextMeshProUGUI>().text = ++score + "";
         if (score == 5) GameManagerScript.Instance.IncreaseDifficulty();
+        if (score == 10) GameManagerScript.Instance.IncreaseDifficulty();
     }
     public IEnumerator ShowFloatingText(string text)
     {
